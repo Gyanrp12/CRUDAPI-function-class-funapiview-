@@ -20,3 +20,11 @@ class UserSerializer(serializers.Serializer):
         instance.age = validated_data.get('age',instance.age)
         instance.save()
         return instance
+    
+    def validate(self,data):
+        nm = data.get('name')
+        ro = data.get('roll')
+        if nm.lower() == 'suraj' and ro >= 50 :
+            raise serializers.ValidationError('seat already full')
+         
+        return data

@@ -19,7 +19,7 @@ class UserAPI(View):
         json_data = request.body
         st = io.BytesIO(json_data)
         pydata = JSONParser().parse(st)
-        id = pydata.get('id', None)
+        id = pydata.get('id', None) 
         if id is not None:
             usr = User.objects.get(id=id)
             ser = UserSerializer(usr)
@@ -35,7 +35,7 @@ class UserAPI(View):
         json_data = request.body 
         s = io.BytesIO(json_data)
         pydata = JSONParser().parse(s)
-        ser = UserSerializer(data=pydata) #data is a syntax 
+        ser = UserSerializer(data=pydata)
         if ser.is_valid():
             ser.save()
             msg ='data created'    
